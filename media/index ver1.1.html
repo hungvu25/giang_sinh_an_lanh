@@ -895,6 +895,8 @@
             const photoInputs = document.querySelectorAll('.photo-input');
             const userNameInput = document.getElementById('userNameInput');
             const shareBtn = document.getElementById('shareBtn');
+            const toggleSettingsBtn = document.getElementById('toggleSettingsBtn');
+            const toggleCamBtn = document.getElementById('toggleCamBtn');
 
             const applyInputsFromState = () => {
                 if (heartInput) heartInput.value = loveText;
@@ -918,6 +920,24 @@
             });
 
             if (shareBtn) shareBtn.addEventListener('click', shareCurrentLink);
+
+            if (toggleSettingsBtn) {
+                toggleSettingsBtn.addEventListener('click', () => {
+                    const isHidden = tab.style.display === 'none';
+                    tab.style.display = isHidden ? 'block' : 'none';
+                    toggleSettingsBtn.textContent = isHidden ? 'Hide Settings' : 'Show Settings';
+                });
+            }
+
+            if (toggleCamBtn) {
+                toggleCamBtn.addEventListener('click', () => {
+                    const cam = document.getElementById('camera-preview');
+                    if (!cam) return;
+                    const isHidden = cam.style.display === 'none';
+                    cam.style.display = isHidden ? 'block' : 'none';
+                    toggleCamBtn.textContent = isHidden ? 'Hide Camera' : 'Show Camera';
+                });
+            }
         })();
     </script>
 </body>
