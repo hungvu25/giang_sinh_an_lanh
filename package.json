@@ -1,0 +1,16 @@
+{
+  "name": "giang_sinh_an_lanh",
+  "version": "1.0.0",
+  "description": "Backend server for Christmas app with Imgbb proxy and share storage.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "form-data": "^4.0.0",
+    "dotenv": "^16.4.5"
+  }
+}
