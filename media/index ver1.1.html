@@ -137,35 +137,34 @@
             font-weight: 700;
             box-shadow: 0 6px 16px rgba(0,0,0,0.35);
         }
-        #ui-toggles {
-            position: absolute;
-            top: 14px;
-            right: 155px;
-            z-index: 160;
-            display: flex;
-            gap: 8px;
-        }
-        .pill-btn {
-            background: rgba(255, 215, 0, 0.18);
-            border: 1px solid rgba(255,215,0,0.6);
+        #ui-toggle-mini {
+            position: fixed;
+            right: 12px;
+            bottom: 12px;
+            z-index: 180;
+            background: rgba(0,0,0,0.35);
+            border: 1px solid rgba(255,215,0,0.5);
             color: #ffd700;
-            padding: 8px 12px;
-            border-radius: 999px;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.35);
-            transition: background 0.2s ease, transform 0.2s ease;
+            padding: 6px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            user-select: none;
+            backdrop-filter: blur(4px);
         }
-        .pill-btn:hover { background: rgba(255, 215, 0, 0.3); transform: translateY(-1px); }
+        #ui-toggle-mini input {
+            accent-color: #ffd700;
+            width: 14px;
+            height: 14px;
+        }
     </style>
 </head>
 <body>
     <div id="error-log"></div>
     <div id="user-name-display"></div>
-    <div id="ui-toggles">
-        <button id="toggleSettingsBtn" class="pill-btn">Hide Settings</button>
-        <button id="toggleCamBtn" class="pill-btn">Hide Camera</button>
-    </div>
+    <label id="ui-toggle-mini"><input type="checkbox" id="uiToggleCheckbox" checked /> UI</label>
 
     <div id="settings-tab">
         <div id="tab-handle">⚙ SETTINGS</div>
@@ -895,8 +894,7 @@
             const photoInputs = document.querySelectorAll('.photo-input');
             const userNameInput = document.getElementById('userNameInput');
             const shareBtn = document.getElementById('shareBtn');
-            const toggleSettingsBtn = document.getElementById('toggleSettingsBtn');
-            const toggleCamBtn = document.getElementById('toggleCamBtn');
+            const uiToggleCheckbox = document.getElementById('uiToggleCheckbox');
 
             const applyInputsFromState = () => {
                 if (heartInput) heartInput.value = loveText;
@@ -921,21 +919,12 @@
 
             if (shareBtn) shareBtn.addEventListener('click', shareCurrentLink);
 
-            if (toggleSettingsBtn) {
-                toggleSettingsBtn.addEventListener('click', () => {
-                    const isHidden = tab.style.display === 'none';
-                    tab.style.display = isHidden ? 'block' : 'none';
-                    toggleSettingsBtn.textContent = isHidden ? 'Hide Settings' : 'Show Settings';
-                });
-            }
-
-            if (toggleCamBtn) {
-                toggleCamBtn.addEventListener('click', () => {
+            if (uiToggleCheckbox) {
+                uiToggleCheckbox.addEventListener('change', () => {
+                    const showUI = uiToggleCheckbox.checked;
+                    tab.style.display = showUI ? 'block' : 'none';
                     const cam = document.getElementById('camera-preview');
-                    if (!cam) return;
-                    const isHidden = cam.style.display === 'none';
-                    cam.style.display = isHidden ? 'block' : 'none';
-                    toggleCamBtn.textContent = isHidden ? 'Hide Camera' : 'Show Camera';
+                    if (cam) cam.style.display = showUI ? 'block' : 'none';
                 });
             }
         })();
