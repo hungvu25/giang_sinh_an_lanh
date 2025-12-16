@@ -14,9 +14,11 @@ const FRONTEND_DIR = path.join(__dirname, 'Mê Ry Chí Mớt');
 const DB_PATH = path.join(__dirname, 'server-db.json');
 const SHARE_TTL_MS = 10 * 24 * 60 * 60 * 1000; // 10 ngày
 
+const INDEX_FILE = path.join(FRONTEND_DIR, 'index ver1.1.html');
+
 app.use(cors());
 app.use(express.json({ limit: '15mb' }));
-app.use(express.static(FRONTEND_DIR));
+app.use(express.static(FRONTEND_DIR, { index: 'index ver1.1.html' }));
 
 function loadDB() {
   try {
@@ -118,6 +120,10 @@ app.get('/api/share/:id', (req, res) => {
   const entry = db.shares[id];
   if (!entry) return res.status(404).json({ error: 'Không tìm thấy share hoặc đã hết hạn.' });
   res.json(entry);
+});
+
+app.get('/', (_req, res) => {
+  res.sendFile(INDEX_FILE);
 });
 
 app.listen(PORT, () => {
