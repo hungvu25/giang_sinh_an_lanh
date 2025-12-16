@@ -137,11 +137,35 @@
             font-weight: 700;
             box-shadow: 0 6px 16px rgba(0,0,0,0.35);
         }
+        #ui-toggles {
+            position: absolute;
+            top: 14px;
+            right: 155px;
+            z-index: 160;
+            display: flex;
+            gap: 8px;
+        }
+        .pill-btn {
+            background: rgba(255, 215, 0, 0.18);
+            border: 1px solid rgba(255,215,0,0.6);
+            color: #ffd700;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .pill-btn:hover { background: rgba(255, 215, 0, 0.3); transform: translateY(-1px); }
     </style>
 </head>
 <body>
     <div id="error-log"></div>
     <div id="user-name-display"></div>
+    <div id="ui-toggles">
+        <button id="toggleSettingsBtn" class="pill-btn">Hide Settings</button>
+        <button id="toggleCamBtn" class="pill-btn">Hide Camera</button>
+    </div>
 
     <div id="settings-tab">
         <div id="tab-handle">⚙ SETTINGS</div>
