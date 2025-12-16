@@ -10,7 +10,7 @@ const crypto = require('crypto');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const IMGBB_API_KEY = process.env.IMGBB_API_KEY || '';
-const FRONTEND_DIR = path.join(__dirname, 'Mê Ry Chí Mớt');
+const FRONTEND_DIR = path.join(__dirname, 'media');
 const DB_PATH = path.join(__dirname, 'server-db.json');
 const SHARE_TTL_MS = 10 * 24 * 60 * 60 * 1000; // 10 ngày
 
