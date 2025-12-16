@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 FROM node:18-alpine
 
 WORKDIR /app
@@ -6,9 +7,7 @@ COPY package.json package-lock.json* ./
 RUN npm install --production
 
 COPY server.js ./server.js
-COPY public ./public
-COPY src ./src
+
 
 EXPOSE 3000
-
-CMD ["node", "server.js"]
+CMD ["npm", "start"]
